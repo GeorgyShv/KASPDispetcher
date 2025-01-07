@@ -282,3 +282,4 @@ D:\Coding\C#\KASPDispetcher\obj\Debug\net8.0\KASPDispetcher.pdb
 D:\Coding\C#\KASPDispetcher\obj\Debug\net8.0\KASPDispetcher.genruntimeconfig.cache
 D:\Coding\C#\KASPDispetcher\obj\Debug\net8.0\ref\KASPDispetcher.dll
 D:\Coding\C#\KASPDispetcher\obj\Debug\net8.0\KASPDispetcher.csproj.CopyComplete
+D:\Coding\C#\KASPDispetcher\obj\Debug\net8.0\KASPDispetcher.sourcelink.json

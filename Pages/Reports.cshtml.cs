@@ -39,8 +39,12 @@ public class ReportsModel : PageModel
     {
         ConstructionSites = await _context.СonstructionSites.ToListAsync();
 
-        // фильтрация
-        var query = _context.Reports.AsQueryable();
+        var query = _context.Reports
+        .Include(r => r.Object)
+        .Include(r => r.User)
+        .Include(r => r.ReportStateJournals) // Включаем состояния
+        .ThenInclude(j => j.State) // Включаем названия состояний
+        .AsQueryable();
 
         if (SelectedObjectId.HasValue)
         {
@@ -62,16 +66,7 @@ public class ReportsModel : PageModel
             query = query.Where(r => r.Data <= dateTo);
         }
 
-        if (Statuses?.Length > 0)
-        {
-            // сделать логику фильтрации по статусам
-        }
-
-        Reports = await _context.Reports
-            .Include(r => r.Object)
-            .Include(r => r.User)
-            .ThenInclude(m => m.User)
-            .ToListAsync();
+        Reports = await query.ToListAsync();
     }
     public async Task<IActionResult> OnPostAsync(DateTime Date, string DocumentNumber, string? Notes)
     {
@@ -84,7 +79,8 @@ public class ReportsModel : PageModel
         {
             if (!int.TryParse(DocumentNumber, out int parsedDocumentNumber))
             {
-                return BadRequest("Номер документа должен быть целым числом.");
+                ViewData["ErrorMessage"] = "Номер документа должен быть целым числом.";
+                return Page(); // Возвращаем страницу с ошибкой
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -92,7 +88,8 @@ public class ReportsModel : PageModel
 
             if (user == null)
             {
-                return BadRequest("Пользователь не найден.");
+                ViewData["ErrorMessage"] = "Пользователь не найден.";
+                return Page();
             }
 
             int newReportId = await GenerateReportIdAsync();
@@ -108,15 +105,26 @@ public class ReportsModel : PageModel
             };
 
             _context.Reports.Add(newReport);
+
+            var newStateJournal = new ReportStateJournal
+            {
+                ReportId = newReportId,
+                StateId = 2, // "Проверка"
+                StateDate = DateTime.Now
+            };
+            _context.ReportStateJournals.Add(newStateJournal);
+
             await _context.SaveChangesAsync();
 
-            return new JsonResult(new { success = true });
+            return RedirectToPage("/Reports");
         }
         catch (Exception ex)
         {
-            return BadRequest(new { error = ex.Message });
+            ViewData["ErrorMessage"] = $"Ошибка: {ex.Message}";
+            return Page();
         }
     }
+
 
     // метод для генерации нового ReportId
     private async Task<int> GenerateReportIdAsync()
