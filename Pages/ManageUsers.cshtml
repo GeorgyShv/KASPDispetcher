@@ -1,0 +1,108 @@
+﻿@page
+@model KASPDispetcher.Pages.ManageUsersModel
+@{
+    ViewData["Title"] = "Управление пользователями";
+}
+
+<div class="container mt-5">
+    <h1>Управление пользователями</h1>
+
+    <!-- Сообщение об успешных действиях -->
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-success">@Model.StatusMessage</div>
+    }
+
+    <!-- Форма поиска -->
+    <form method="get" class="mb-3">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" name="searchEmail" value="@Model.SearchEmail" placeholder="Поиск по email" class="form-control" />
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Найти</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-page-handler="Sort" asp-route-column="FullName" class="text-decoration-none">
+                        ФИО
+                        @if (Model.SortColumn == "FullName")
+                        {
+                            @Model.SortDirectionIcon
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-page-handler="Sort" asp-route-column="Email" class="text-decoration-none">
+                        Email
+                        @if (Model.SortColumn == "Email")
+                        {
+                            @Model.SortDirectionIcon
+                        }
+                    </a>
+                </th>
+                <th>
+                    <a asp-page-handler="Sort" asp-route-column="Roles" class="text-decoration-none">
+                        Роли
+                        @if (Model.SortColumn == "Roles")
+                        {
+                            @Model.SortDirectionIcon
+                        }
+                    </a>
+                </th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.FullName</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @if (user.Roles.Any())
+                        {
+                            @string.Join(", ", user.Roles)
+                        }
+                        else
+                        {
+                            <span class="text-muted">Нет ролей</span>
+                        }
+                    </td>
+                    <td>
+                        <!-- Назначение роли -->
+                        <form method="post" asp-page-handler="AssignRole" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="UserId" value="@user.Id" />
+                            <select name="RoleName" class="form-select d-inline w-auto">
+                                @foreach (var role in Model.AvailableRoles)
+                                {
+                                    <option value="@role">@role</option>
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-success">Назначить</button>
+                        </form>
+
+                        <!-- Удаление роли -->
+                        <form method="post" asp-page-handler="RemoveRole" class="d-inline">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="UserId" value="@user.Id" />
+                            <select name="RoleName" class="form-select d-inline w-auto">
+                                @foreach (var role in user.Roles)
+                                {
+                                    <option value="@role">@role</option>
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

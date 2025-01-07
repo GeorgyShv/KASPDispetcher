@@ -1,0 +1,107 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background-color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-bottom: 60px;
+}
+
+.header-buttons {
+    margin-top: 20px;
+}
+
+.header-buttons .btn {
+    border: 1px solid #ccc;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+.header-buttons .btn-notifications {
+    position: relative;
+}
+
+.header-buttons .btn-notifications .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+.main-content {
+    margin-top: 50px;
+}
+
+.main-content h1 {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.main-content p {
+    font-size: 18px;
+}
+
+.main-content img {
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.navbar {
+    background-color: #e0e0e0;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    font-weight: bold;
+}
+
+.custom-brand {
+    color: black !important;
+}
+
+.custom-brand:hover {
+    color: #c70039;
+}
+
+.custom-toggler {
+    border-color: black;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-color: black;
+}

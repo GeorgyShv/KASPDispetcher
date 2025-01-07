@@ -1,0 +1,31 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4" style="width: 24rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Войти</h5>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="password" name="Password" required>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+                }
+                <button type="submit" class="btn btn-primary w-100">Войти</button>
+                <div class="text-center mt-3">
+                    <a href="/Register" class="text-decoration-none">Нет аккаунта? Зарегистрируйтесь</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

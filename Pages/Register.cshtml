@@ -1,0 +1,56 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg p-4" style="width: 30rem;">
+        <div class="card-body">
+            <h5 class="card-title text-center">Зарегистрироваться</h5>
+            <form method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="Email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Пароль</label>
+                    <input type="password" class="form-control" id="password" name="Password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Подтвердите пароль</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="firstName" name="FirstName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lastName" class="form-label">Фамилия</label>
+                    <input type="text" class="form-control" id="lastName" name="LastName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="middleName" class="form-label">Отчество</label>
+                    <input type="text" class="form-control" id="middleName" name="MiddleName">
+                </div>
+                <div class="mb-3">
+                    <label for="department" class="form-label">Подразделение</label>
+                    <select class="form-select" id="department" name="SelectedDepartmentId" required>
+                        <option selected disabled>Выберите подразделение</option>
+                        @foreach (var department in Model.Departments)
+                        {
+                            <option value="@department.DepartmentId">@department.DepartmentId</option>
+                        }
+                    </select>
+                </div>
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage)) {
+                    <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+                }
+                <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
+                <div class="text-center mt-3">
+                    <a href="/Login" class="text-decoration-none">Уже есть аккаунт? Войдите</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

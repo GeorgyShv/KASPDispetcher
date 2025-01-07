@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #e0e0e0;
+}
+
+.header-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.header-buttons .btn {
+    border: 1px solid #ccc;
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 0 10px;
+}
+
+.header-buttons .btn-notifications {
+    position: relative;
+}
+
+.header-buttons .btn-notifications .badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.navbar-nav {
+    flex-direction: row;
+}
+
+.nav-link {
+    color: black;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.nav-link.active {
+    background-color: #4b0082;
+    color: white;
+}

@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "КАСП";
+}
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div class="header-buttons">
+        <a class="btn text-black" href="/Reports">Отчеты</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="/ManageUsers" class="btn text-black">Администраторская панель</a>
+        }
+        else {
+            <button class="btn btn-notifications">
+                Уведомления
+                <span class="badge">
+                    +23
+                </span>
+            </button>
+        }
+    </div>
+}
+
+@if (User.IsInRole("Admin"))
+{
+    
+}
+
+<div class="main-content d-flex align-items-center">
+    <!-- Блок с текстом -->
+    <div class="me-4">
+        <h1>КАСП</h1>
+        <p>Строительная фирма номер один в России</p>
+    </div>
+
+    <!-- Блок с изображением -->
+    <img alt="Illustration" src="/images/banners/constructionImg.png" />
+</div>

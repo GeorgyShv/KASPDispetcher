@@ -1,0 +1,318 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Coding\\C#\\KASPDispetcher\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\reports.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\reports.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\reports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\wwwroot\\js\\createreport.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:wwwroot\\js\\createreport.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\models\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:models\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\manageusers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\manageusers.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\models\\master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:models\\master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\manageusers.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\manageusers.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\roleseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:roleseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|d:\\coding\\c#\\kaspdispetcher\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F59AD26-F95C-40EB-9B37-3C2D65AFD02F}|KASPDispetcher.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 258,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Reports.cshtml.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Reports.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Reports.cshtml.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Reports.cshtml.cs",
+              "RelativeToolTip": "Pages\\Reports.cshtml.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAuwFEAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-19T06:04:08.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Reports.cshtml",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Reports.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Reports.cshtml",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Reports.cshtml",
+              "RelativeToolTip": "Pages\\Reports.cshtml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAF0AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-19T05:35:27.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T22:59:38.369Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Index.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-09T13:25:12.605Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAA4AAAAAMzMzMzMpwBwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T22:22:36.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Report.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Models\\Report.cs",
+              "RelativeDocumentMoniker": "Models\\Report.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Models\\Report.cs",
+              "RelativeToolTip": "Models\\Report.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwA8AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T21:48:21.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "createReport.js",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\createReport.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\createReport.js",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\createReport.js",
+              "RelativeToolTip": "wwwroot\\js\\createReport.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-19T06:27:24.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-19T07:41:40.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ManageUsers.cshtml",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\ManageUsers.cshtml",
+              "RelativeDocumentMoniker": "Pages\\ManageUsers.cshtml",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\ManageUsers.cshtml",
+              "RelativeToolTip": "Pages\\ManageUsers.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACwAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-14T01:10:36.557Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Master.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Models\\Master.cs",
+              "RelativeDocumentMoniker": "Models\\Master.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Models\\Master.cs",
+              "RelativeToolTip": "Models\\Master.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T21:31:32.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ManageUsers.cshtml.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\ManageUsers.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\ManageUsers.cshtml.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\ManageUsers.cshtml.cs",
+              "RelativeToolTip": "Pages\\ManageUsers.cshtml.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAiwCkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-14T01:10:41.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RoleSeeder.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\RoleSeeder.cs",
+              "RelativeDocumentMoniker": "RoleSeeder.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\RoleSeeder.cs",
+              "RelativeToolTip": "RoleSeeder.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAwwA8AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-14T01:17:57.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T22:59:09.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ApplicationContext.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\ApplicationContext.cs",
+              "RelativeDocumentMoniker": "ApplicationContext.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\ApplicationContext.cs",
+              "RelativeToolTip": "ApplicationContext.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAAqwD0AAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T22:34:31.838Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Index.cshtml.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAADgvxsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-09T22:53:35.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Login.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Login.cshtml",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Login.cshtml",
+              "RelativeToolTip": "Pages\\Login.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T21:02:54.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Register.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Register.cshtml",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Register.cshtml",
+              "RelativeToolTip": "Pages\\Register.cshtml",
+              "ViewState": "AQIAABYAAAAAAAAAAAAuwCkAAABmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-12T20:56:30.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Register.cshtml.cs",
+              "ToolTip": "D:\\Coding\\C#\\KASPDispetcher\\Pages\\Register.cshtml.cs",
+              "RelativeToolTip": "Pages\\Register.cshtml.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAgwCUAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T21:17:08.845Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
