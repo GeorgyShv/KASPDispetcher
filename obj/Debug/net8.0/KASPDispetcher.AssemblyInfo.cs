@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KASPDispetcher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1a2ab3768ea97d9e98501ea69d8f4bba0ebec88")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1adced7ac045bc33f502f7f02fc3f653984090fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("KASPDispetcher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KASPDispetcher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

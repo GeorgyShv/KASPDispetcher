@@ -109,7 +109,7 @@ public class ReportsModel : PageModel
             var newStateJournal = new ReportStateJournal
             {
                 ReportId = newReportId,
-                StateId = 2, // "Проверка"
+                StateId = 4, // Статус "Не готов"
                 StateDate = DateTime.Now
             };
             _context.ReportStateJournals.Add(newStateJournal);
@@ -125,6 +125,68 @@ public class ReportsModel : PageModel
         }
     }
 
+    public async Task<IActionResult> OnPostSubmitForApprovalAsync(int ReportId)
+    {
+        // Проверяем, существует ли отчёт
+        var report = await _context.Reports
+            .Include(r => r.ReportStateJournals)
+            .FirstOrDefaultAsync(r => r.ReportId == ReportId);
+
+        if (report == null)
+        {
+            return NotFound();
+        }
+
+        // Проверяем, существует ли статус "Проверка" (StateId = 2)
+        var approvalState = await _context.ReportStates.FirstOrDefaultAsync(s => s.StateId == 2);
+        if (approvalState == null)
+        {
+            return NotFound("Статус 'Проверка' не найден.");
+        }
+
+        // Проверяем, существует ли уже запись в журнале для данного статуса
+        var existingState = report.ReportStateJournals
+            .FirstOrDefault(j => j.StateId == approvalState.StateId);
+
+        if (existingState == null)
+        {
+            // Добавляем новую запись в журнал статусов
+            var stateJournal = new ReportStateJournal
+            {
+                ReportId = ReportId,
+                StateId = approvalState.StateId,
+                StateDate = DateTime.Now
+            };
+            _context.ReportStateJournals.Add(stateJournal);
+
+            await _context.SaveChangesAsync();
+        }
+
+        return RedirectToPage("/Reports");
+    }
+
+    public async Task<IActionResult> OnPostDeleteAsync(int ReportId)
+    {
+        // Найти отчет по ID
+        var report = await _context.Reports
+            .Include(r => r.ReportStateJournals)
+            .FirstOrDefaultAsync(r => r.ReportId == ReportId);
+
+        if (report == null)
+        {
+            return NotFound();
+        }
+
+        // Удаляем связанные записи из журнала состояний
+        _context.ReportStateJournals.RemoveRange(report.ReportStateJournals);
+
+        // Удаляем отчет
+        _context.Reports.Remove(report);
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToPage("/Reports");
+    }
 
     // метод для генерации нового ReportId
     private async Task<int> GenerateReportIdAsync()

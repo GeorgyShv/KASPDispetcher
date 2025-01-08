@@ -3,6 +3,20 @@
 @{
 }
 
+<style>
+    .bg-success {
+        background-color: #ccffcc !important;
+    }
+
+    .bg-warning {
+        background-color: #ffffcc !important;
+    }
+
+    .bg-danger {
+        background-color: #ffcccc !important;
+    }
+</style>
+
 <form method="get" class="mb-3">
     <div class="row">
         <div class="col-md-3">
@@ -76,7 +90,16 @@
             var status = report.ReportStateJournals
             .OrderByDescending(j => j.StateDate)
             .FirstOrDefault()?.State?.StateName ?? "Нет данных";
-            <tr>
+
+            var rowClass = status switch
+            {
+                "Утвержден" => "bg-success text-white",
+                "Проверка" => "bg-warning",
+                "Доработать" => "bg-danger text-white",
+                _ => ""
+            };
+
+            <tr class="@rowClass">
                 <td>@report.НомерДокумента</td>
                 <td>@report.Object?.ObjectName</td>
                 <td>@report.DepartmentId</td>
@@ -84,8 +107,33 @@
                 <td>@($"{report.User?.User?.LastName} {report.User?.User?.FirstName} {report.User?.User?.MiddleName}")</td>
                 <td>@status</td>
                 <td>
-                    <a href="/Reports/Details/@report.ReportId" class="btn btn-info">Подробнее</a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="actionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Действия
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                            <li><a class="dropdown-item" asp-page="/Reports/Edit" asp-route-id="@report.ReportId">Редактировать</a></li>
+                            @if (!(report.ReportStateJournals
+                           .OrderByDescending(j => j.StateDate)
+                           .FirstOrDefault()?.State?.StateName == "Проверка"))
+                            {
+                                <li>
+                                    <form method="post" asp-page-handler="SubmitForApproval" style="display: inline;">
+                                        <input type="hidden" name="ReportId" value="@report.ReportId" />
+                                        <button type="submit" class="dropdown-item">Отправить на утверждение</button>
+                                    </form>
+                                </li>
+                            }
+                            <li>
+                                <form method="post" asp-page-handler="Delete" style="display: inline;">
+                                    <input type="hidden" name="ReportId" value="@report.ReportId" />
+                                    <button type="submit" class="dropdown-item text-danger">Удалить</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
+
             </tr>
         }
     </tbody>
