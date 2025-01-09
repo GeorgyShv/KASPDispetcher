@@ -22,9 +22,22 @@ builder.Services.AddDefaultIdentity<User>(options =>
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationContext>();
 
+// Настройка куки
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.Name = "YourAuthCookie";
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+    options.SlidingExpiration = true;
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+});
+
 // Добавление Razor Pages
 builder.Services.AddRazorPages();
-
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
@@ -41,18 +54,15 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    // Убедитесь, что роль существует
     var roleName = "Admin";
     if (!await roleManager.RoleExistsAsync(roleName))
     {
         await roleManager.CreateAsync(new IdentityRole(roleName));
     }
 
-    // Найдите пользователя по email
     var user = await userManager.FindByEmailAsync("mr.gosha9@mail.ru");
     if (user != null && !await userManager.IsInRoleAsync(user, roleName))
     {
-        // Назначьте роль
         await userManager.AddToRoleAsync(user, roleName);
         Console.WriteLine($"Роль {roleName} успешно назначена пользователю {user.Email}");
     }
@@ -62,7 +72,6 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Конфигурация HTTP pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

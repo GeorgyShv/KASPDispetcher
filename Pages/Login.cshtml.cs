@@ -11,6 +11,8 @@ public class LoginModel : PageModel
     public string Email { get; set; }
     [BindProperty]
     public string Password { get; set; }
+    [BindProperty]
+    public bool RememberMe { get; set; } // Новый параметр
 
     public string ErrorMessage { get; set; }
 
@@ -21,7 +23,7 @@ public class LoginModel : PageModel
 
     public async Task<IActionResult> OnPostAsync()
     {
-        var result = await _signInManager.PasswordSignInAsync(Email, Password, isPersistent: false, lockoutOnFailure: false);
+        var result = await _signInManager.PasswordSignInAsync(Email, Password, RememberMe, lockoutOnFailure: false);
 
         if (result.Succeeded)
         {

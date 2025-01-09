@@ -9,21 +9,23 @@
         <div class="card-body">
             <h5 class="card-title text-center">Войти</h5>
             <form method="post">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="Email" required>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" asp-for="Email" required />
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="password" name="Password" required>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" class="form-control" asp-for="Password" required />
                 </div>
-                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
-                {
-                    <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
-                }
-                <button type="submit" class="btn btn-primary w-100">Войти</button>
-                <div class="text-center mt-3">
-                    <a href="/Register" class="text-decoration-none">Нет аккаунта? Зарегистрируйтесь</a>
+                <div class="form-check">
+                    <input type="checkbox" id="rememberMe" class="form-check-input" asp-for="RememberMe" />
+                    <label class="form-check-label" for="rememberMe">Запомнить меня</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                </div>
+                <div class="text-danger">
+                    @Model.ErrorMessage
                 </div>
             </form>
         </div>
