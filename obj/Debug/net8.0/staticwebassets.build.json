@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "78aJ3ZfmxqpIoOFezNJmSfT3UqyTqjohE88n/wTYJ2c=",
+  "Hash": "BVSiOXBr8JTRKiBFqHycSgLRFXmaRndYHCexo2Myp0E=",
   "Source": "KASPDispetcher",
   "BasePath": "_content/KASPDispetcher",
   "Mode": "Default",
@@ -1345,6 +1345,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\ThemeToggle.js",
+      "SourceId": "KASPDispetcher",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\",
+      "BasePath": "_content/KASPDispetcher",
+      "RelativePath": "js/ThemeToggle.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ThemeToggle.js"
     },
     {
       "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

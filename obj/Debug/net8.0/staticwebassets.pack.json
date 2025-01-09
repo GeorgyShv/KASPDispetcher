@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\images\\logos\\logo.png"
     },
     {
+      "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\ThemeToggle.js",
+      "PackagePath": "staticwebassets\\js\\ThemeToggle.js"
+    },
+    {
       "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\createReport.js",
       "PackagePath": "staticwebassets\\js\\createReport.js"
     },

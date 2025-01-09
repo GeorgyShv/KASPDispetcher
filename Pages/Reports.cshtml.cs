@@ -47,6 +47,12 @@ public class ReportsModel : PageModel
 
     public List<string> StatusOptions { get; set; } = new();
 
+    [BindProperty(SupportsGet = true)]
+    public int CurrentPage { get; set; } = 1;
+
+    public int TotalPages { get; set; }
+    public const int PageSize = 8;
+
     public async Task OnGetAsync()
     {
         ConstructionSites = await _context.СonstructionSites.ToListAsync();
@@ -60,6 +66,9 @@ public class ReportsModel : PageModel
             .ThenInclude(j => j.State)
             .Include(r => r.Object)
             .AsQueryable();
+
+        var totalReports = await query.CountAsync();
+        TotalPages = (int)Math.Ceiling(totalReports / (double)PageSize);
 
         // Применяем фильтрацию
         if (!string.IsNullOrWhiteSpace(SearchQuery))
@@ -99,14 +108,19 @@ public class ReportsModel : PageModel
             "Дата" => SortDescending
                 ? query.OrderByDescending(r => r.Data)
                 : query.OrderBy(r => r.Data),
-            _ => query
+            "Объект" => SortDescending
+            ? query.OrderByDescending(r => r.Object.ObjectName)
+            : query.OrderBy(r => r.Object.ObjectName),
+                _ => query
         };
 
-        // Выполняем запрос к базе
-        var reports = await query.ToListAsync();
+        var reports = await query
+            .Skip((CurrentPage - 1) * PageSize)
+            .Take(PageSize)
+            .ToListAsync();
 
-        // Преобразуем данные для отображения
         var users = await _context.Users.ToDictionaryAsync(u => u.Id, u => u.LastName);
+
         Reports = reports.Select(r => new ReportViewModel
         {
             ReportId = r.ReportId,

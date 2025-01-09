@@ -2,6 +2,7 @@
 @using KASPDispetcher.Models
 @model ReportsModel
 @{
+    ViewData["Title"] = "Отчеты";
     var breadcrumbs = new List<BreadcrumbItem>
     {
         new BreadcrumbItem { Title = "Главная", Url = "/" },
@@ -208,6 +209,23 @@
     }
 </div>
 
+<nav aria-label="Пагинация">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+            <a class="page-link" asp-route-CurrentPage="@(Model.CurrentPage - 1)">Предыдущая</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                <a class="page-link" asp-route-CurrentPage="@i">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.CurrentPage >= Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" asp-route-CurrentPage="@(Model.CurrentPage + 1)">Следующая</a>
+        </li>
+    </ul>
+</nav>
+
 <!-- Модальное окно для создания отчета -->
 <div class="modal fade" id="createReportModal" tabindex="-1" aria-labelledby="createReportModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -236,38 +254,6 @@
                         <label for="reportNumber" class="form-label">Номер документа</label>
                         <input type="text" class="form-control" id="reportNumber" name="DocumentNumber" required>
                         <div id="documentNumberError" class="text-danger" style="display: none;">Номер документа должен быть целым числом.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reportNotes" class="form-label">Примечание</label>
-                        <textarea class="form-control" id="reportNotes" name="Notes" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-success">Создать</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="createReportModal" tabindex="-1" aria-labelledby="createReportModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createReportModalLabel">Создать новый отчёт</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="createReportForm" method="post" asp-page-handler="Create">
-                    <div class="mb-3">
-                        <label for="reportDate" class="form-label">Дата</label>
-                        <input type="date" class="form-control" id="reportDate" name="Date" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="reportNumber" class="form-label">Номер документа</label>
-                        <input type="text" class="form-control" id="reportNumber" name="DocumentNumber" required>
-                        @if (ViewData["ErrorMessage"] != null)
-                        {
-                            <div class="text-danger">@ViewData["ErrorMessage"]</div>
-                        }
                     </div>
                     <div class="mb-3">
                         <label for="reportNotes" class="form-label">Примечание</label>

@@ -105,3 +105,29 @@ body {
 .custom-toggler .navbar-toggler-icon {
     background-color: black;
 }
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --card-bg-color: #f8f9fa;
+    --btn-bg-color: #007bff;
+    --btn-text-color: #ffffff;
+}
+
+.dark-theme {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --card-bg-color: #1e1e1e;
+    --btn-bg-color: #007bff;
+    --btn-text-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+}
