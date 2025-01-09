@@ -17,10 +17,15 @@
     }
 </style>
 
+<!-- Фильтры -->
 <form method="get" class="mb-3">
     <div class="row">
         <div class="col-md-3">
-            <label for="ObjectId" class="form-label">Выбор объекта</label>
+            <label for="SearchQuery" class="form-label">Поиск</label>
+            <input type="text" name="SearchQuery" id="SearchQuery" class="form-control" value="@Model.SearchQuery" placeholder="Введите текст">
+        </div>
+        <div class="col-md-3">
+            <label for="SelectedObjectId" class="form-label">Объект</label>
             <select id="ObjectId" name="ObjectId" class="form-select">
                 <option value="">Все объекты</option>
                 @foreach (var site in Model.ConstructionSites)
@@ -32,19 +37,14 @@
             </select>
         </div>
         <div class="col-md-3">
-            <label for="UserId" class="form-label">Исполнитель</label>
-            <input type="text" id="UserId" name="UserId" class="form-control" value="@Model.SelectedUserId" />
+            <label for="DateFrom" class="form-label">Дата от</label>
+            <input type="date" name="DateFrom" id="DateFrom" class="form-control" value="@Model.DateFrom">
         </div>
         <div class="col-md-3">
-            <label for="DateFrom" class="form-label">Дата с</label>
-            <input type="date" id="DateFrom" name="DateFrom" class="form-control" value="@Model.DateFrom" />
-        </div>
-        <div class="col-md-3">
-            <label for="DateTo" class="form-label">Дата по</label>
-            <input type="date" id="DateTo" name="DateTo" class="form-control" value="@Model.DateTo" />
+            <label for="DateTo" class="form-label">Дата до</label>
+            <input type="date" name="DateTo" id="DateTo" class="form-control" value="@Model.DateTo">
         </div>
     </div>
-
     <div class="row mt-3">
         <div class="col-md-12">
             <label class="form-label">Статусы</label><br />
@@ -62,82 +62,162 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReportModal">
-        Создать новый отчёт
-    </button>
-    <div class="row mt-3">
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Применить</button>
-        </div>
-    </div>
 </form>
 
-<table id="reportsTable" class="table table-striped">
-    <thead>
-        <tr>
-            <th>Номер документа</th>
-            <th>Объект</th>
-            <th>Подразделение</th>
-            <th>Дата</th>
-            <th>Исполнитель</th>
-            <th>Статус</th>
-            <th>Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var report in Model.Reports)
-        {
-            var status = report.ReportStateJournals
-            .OrderByDescending(j => j.StateDate)
-            .FirstOrDefault()?.State?.StateName ?? "Нет данных";
+<div class="mb-3">
+    <form method="get">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="SearchQuery" value="@Model.SearchQuery" placeholder="Поиск...">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Найти</button>
+            </div>
+        </div>
+    </form>
+</div>
 
-            var rowClass = status switch
-            {
-                "Утвержден" => "bg-success text-white",
-                "Проверка" => "bg-warning",
-                "Доработать" => "bg-danger text-white",
-                _ => ""
-            };
-
-            <tr class="@rowClass">
-                <td>@report.НомерДокумента</td>
-                <td>@report.Object?.ObjectName</td>
-                <td>@report.DepartmentId</td>
-                <td>@report.Data.ToShortDateString()</td>
-                <td>@($"{report.User?.User?.LastName} {report.User?.User?.FirstName} {report.User?.User?.MiddleName}")</td>
-                <td>@status</td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="actionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            Действия
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                            <li><a class="dropdown-item" asp-page="/Reports/Edit" asp-route-id="@report.ReportId">Редактировать</a></li>
-                            @if (!(report.ReportStateJournals
-                           .OrderByDescending(j => j.StateDate)
-                           .FirstOrDefault()?.State?.StateName == "Проверка"))
+<div class="container mt-4">
+    @if (Model.Reports == null || !Model.Reports.Any())
+    {
+        <div class="alert alert-info text-center">
+            <p>На данный момент отчетов нет, нажмите на кнопку "Создать", чтобы создать первый отчет.</p>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReportModal">
+                Создать
+            </button>
+        </div>
+    }
+    else
+    {
+        <table id="reportsTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-page-handler="Index"
+                           asp-route-SortColumn="НомерДокумента"
+                           asp-route-SortDescending="@(Model.SortColumn == "НомерДокумента" && !Model.SortDescending)">
+                            Номер отчета
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-page="/Reports" asp-route-SortColumn="Объект" asp-route-SortDescending="@(!Model.SortDescending)">
+                            Объект
+                            @if (Model.SortColumn == "Объект")
                             {
-                                <li>
-                                    <form method="post" asp-page-handler="SubmitForApproval" style="display: inline;">
-                                        <input type="hidden" name="ReportId" value="@report.ReportId" />
-                                        <button type="submit" class="dropdown-item">Отправить на утверждение</button>
-                                    </form>
-                                </li>
+                                <span>@(Model.SortDescending ? "↓" : "↑")</span>
                             }
-                            <li>
-                                <form method="post" asp-page-handler="Delete" style="display: inline;">
-                                    <input type="hidden" name="ReportId" value="@report.ReportId" />
-                                    <button type="submit" class="dropdown-item text-danger">Удалить</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </td>
+                        </a>
+                    </th>
+                    <th>Подразделение</th>
+                    <th>
+                        <a asp-page-handler="Index"
+                           asp-route-SortColumn="Дата"
+                           asp-route-SortDescending="@(Model.SortColumn == "Дата" && !Model.SortDescending)">
+                            Дата
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-page="/Reports" asp-route-SortColumn="Исполнитель" asp-route-SortDescending="@(!Model.SortDescending)">
+                            Исполнитель
+                            @if (Model.SortColumn == "Исполнитель")
+                            {
+                                <span>@(Model.SortDescending ? "↓" : "↑")</span>
+                            }
+                        </a>
+                    </th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var report in Model.Reports)
+                {
+                    var rowClass = report.Status switch
+                    {
+                        "Утвержден" => "bg-success text-white",
+                        "Проверка" => "bg-warning",
+                        "Доработать" => "bg-danger text-white",
+                        _ => ""
+                    };
 
-            </tr>
-        }
-    </tbody>
-</table>
+                    <tr class="@rowClass">
+                        <td>@report.НомерДокумента</td>
+                        <td>@report.ObjectName</td>
+                        <td>@report.DepartmentId</td>
+                        <td>@report.Data.ToShortDateString()</td>
+                        <td>@report.UserName</td>
+                        <td>@report.Status</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="actionDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Действия
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                                    <li><a class="dropdown-item" asp-page="/Reports/Edit" asp-route-id="@report.ReportId">Редактировать</a></li>
+                                    @if (report.Status != "Проверка")
+                                    {
+                                        <li>
+                                            <form method="post" asp-page-handler="SubmitForApproval" style="display: inline;">
+                                                <input type="hidden" name="ReportId" value="@report.ReportId" />
+                                                <button type="submit" class="dropdown-item">Отправить на утверждение</button>
+                                            </form>
+                                        </li>
+                                    }
+                                    <li>
+                                        <form method="post" asp-page-handler="Delete" style="display: inline;">
+                                            <input type="hidden" name="ReportId" value="@report.ReportId" />
+                                            <button type="submit" class="dropdown-item text-danger">Удалить</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<!-- Модальное окно для создания отчета -->
+<div class="modal fade" id="createReportModal" tabindex="-1" aria-labelledby="createReportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createReportModalLabel">Создать новый отчёт</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createReportForm" method="post" asp-page-handler="Create">
+                    <div class="mb-3">
+                        <label for="reportDate" class="form-label">Дата</label>
+                        <input type="date" class="form-control" id="reportDate" name="Date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reportObject" class="form-label">Объект</label>
+                        <select class="form-select" id="reportObject" name="ObjectId" required>
+                            <option value="" disabled selected>Выберите объект</option>
+                            @foreach (var site in Model.ConstructionSites)
+                            {
+                                <option value="@site.ObjectId">@site.ObjectName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reportNumber" class="form-label">Номер документа</label>
+                        <input type="text" class="form-control" id="reportNumber" name="DocumentNumber" required>
+                        <div id="documentNumberError" class="text-danger" style="display: none;">Номер документа должен быть целым числом.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="reportNotes" class="form-label">Примечание</label>
+                        <textarea class="form-control" id="reportNotes" name="Notes" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="createReportModal" tabindex="-1" aria-labelledby="createReportModalLabel" aria-hidden="true">
     <div class="modal-dialog">

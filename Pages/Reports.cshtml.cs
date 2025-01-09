@@ -17,7 +17,17 @@ public class ReportsModel : PageModel
         _context = context;
     }
 
-    public List<Report> Reports { get; set; } = new();
+    [BindProperty(SupportsGet = true)]
+    public string SearchQuery { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public string SortColumn { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public bool SortDescending { get; set; }
+
+    public List<ReportViewModel> Reports { get; set; }
+
     public List<СonstructionSite> ConstructionSites { get; set; } = new();
 
     [BindProperty(SupportsGet = true)]
@@ -40,11 +50,53 @@ public class ReportsModel : PageModel
         ConstructionSites = await _context.СonstructionSites.ToListAsync();
 
         var query = _context.Reports
-        .Include(r => r.Object)
-        .Include(r => r.User)
-        .Include(r => r.ReportStateJournals) // Включаем состояния
-        .ThenInclude(j => j.State) // Включаем названия состояний
-        .AsQueryable();
+            .Include(r => r.ReportStateJournals)
+            .ThenInclude(j => j.State)
+            .Include(r => r.Object)
+            .AsQueryable();
+
+        var reports = await query
+            .Include(r => r.ReportStateJournals)
+            .ThenInclude(j => j.State)
+            .Include(r => r.Object)
+            .ToListAsync();
+
+        var users = await _context.Users.ToDictionaryAsync(u => u.Id, u => u.LastName);
+
+        Reports = reports.Select(r => new ReportViewModel
+        {
+            ReportId = r.ReportId,
+            НомерДокумента = r.НомерДокумента,
+            Data = r.Data,
+            Note = r.Note,
+            ObjectName = r.Object?.ObjectName ?? "Нет данных",
+            UserName = users.ContainsKey(r.UserId) ? users[r.UserId] : "Нет данных",
+            Status = r.ReportStateJournals
+            .OrderByDescending(j => j.StateDate)
+            .FirstOrDefault()?.State?.StateName ?? "Нет данных",
+            DepartmentId = r.DepartmentId
+        }).ToList();
+
+        // Поиск по номеру документа, пользователю и заметке
+        if (!string.IsNullOrWhiteSpace(SearchQuery))
+        {
+            query = query.Where(r =>
+                r.НомерДокумента.ToString().Contains(SearchQuery) ||
+                (users.ContainsKey(r.UserId) && users[r.UserId].Contains(SearchQuery)) ||
+                (r.Note != null && r.Note.Contains(SearchQuery)));
+        }
+
+        // Фильтр по выбранному объекту
+        if (SelectedObjectId.HasValue)
+        {
+            query = query.Where(r => r.ObjectId == SelectedObjectId.Value);
+        }
+
+        // Фильтр по дате
+        if (!string.IsNullOrEmpty(DateFrom) && DateTime.TryParse(DateFrom, out var dateFrom))
+        {
+            query = query.Where(r => r.Data >= dateFrom);
+        }
 
         if (SelectedObjectId.HasValue)
         {
@@ -56,24 +108,42 @@ public class ReportsModel : PageModel
             query = query.Where(r => r.UserId.Contains(SelectedUserId));
         }
 
-        if (!string.IsNullOrEmpty(DateFrom) && DateTime.TryParse(DateFrom, out var dateFrom))
-        {
-            query = query.Where(r => r.Data >= dateFrom);
-        }
-
         if (!string.IsNullOrEmpty(DateTo) && DateTime.TryParse(DateTo, out var dateTo))
         {
             query = query.Where(r => r.Data <= dateTo);
         }
 
-        Reports = await query.ToListAsync();
+        // Фильтрация по статусам
+        if (Statuses != null && Statuses.Any())
+        {
+            query = query.Where(r => r.ReportStateJournals.Any(j =>
+                j.State != null && Statuses.Contains(j.State.StateName)));
+        }
+
+        // Сортировка
+        query = SortColumn switch
+        {
+            "НомерДокумента" => SortDescending
+                ? query.OrderByDescending(r => r.НомерДокумента)
+                : query.OrderBy(r => r.НомерДокумента),
+            "Дата" => SortDescending
+                ? query.OrderByDescending(r => r.Data)
+                : query.OrderBy(r => r.Data),
+            "Исполнитель" => SortDescending
+                ? query.OrderByDescending(r => users.ContainsKey(r.UserId) ? users[r.UserId] : "")
+                : query.OrderBy(r => users.ContainsKey(r.UserId) ? users[r.UserId] : ""),
+            "Объект" => SortDescending
+                ? query.OrderByDescending(r => r.Object.ObjectName)
+                : query.OrderBy(r => r.Object.ObjectName),
+            _ => query
+        };
     }
     public async Task<IActionResult> OnPostAsync(DateTime Date, string DocumentNumber, string? Notes)
     {
         return Page();
     }
 
-    public async Task<IActionResult> OnPostCreateAsync(DateTime Date, string DocumentNumber, string? Notes)
+    public async Task<IActionResult> OnPostCreateAsync(DateTime Date, string DocumentNumber, int ObjectId, string? Notes)
     {
         try
         {
@@ -101,7 +171,8 @@ public class ReportsModel : PageModel
                 НомерДокумента = parsedDocumentNumber,
                 Note = Notes,
                 UserId = userId,
-                DepartmentId = user.DepartmentId
+                DepartmentId = user.DepartmentId,
+                ObjectId = ObjectId
             };
 
             _context.Reports.Add(newReport);
