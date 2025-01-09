@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BVSiOXBr8JTRKiBFqHycSgLRFXmaRndYHCexo2Myp0E=",
+  "Hash": "X+tWk+NjLQgyJqTEODX5mLBSFd2FJDX4a/b3rrtA6UI=",
   "Source": "KASPDispetcher",
   "BasePath": "_content/KASPDispetcher",
   "Mode": "Default",
@@ -1290,6 +1290,25 @@
       "OriginalItemSpec": "wwwroot\\images\\banners\\constructionImg.png"
     },
     {
+      "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\images\\icons\\free-icon-list-8173287.png",
+      "SourceId": "KASPDispetcher",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\",
+      "BasePath": "_content/KASPDispetcher",
+      "RelativePath": "images/icons/free-icon-list-8173287.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\free-icon-list-8173287.png"
+    },
+    {
       "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\images\\logos\\logo.png",
       "SourceId": "KASPDispetcher",
       "SourceType": "Discovered",
@@ -1347,12 +1366,12 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\ThemeToggle.js",
+      "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\themeToggle.js",
       "SourceId": "KASPDispetcher",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\",
       "BasePath": "_content/KASPDispetcher",
-      "RelativePath": "js/ThemeToggle.js",
+      "RelativePath": "js/themeToggle.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1363,7 +1382,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\ThemeToggle.js"
+      "OriginalItemSpec": "wwwroot\\js\\themeToggle.js"
     },
     {
       "Identity": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

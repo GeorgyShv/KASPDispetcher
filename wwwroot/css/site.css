@@ -71,7 +71,7 @@ body {
 }
 
 .navbar {
-    background-color: #e0e0e0;
+    background-color: var(--navbar-bg-color);
 }
 
 .navbar-brand {
@@ -98,20 +98,13 @@ body {
     color: #c70039;
 }
 
-.custom-toggler {
-    border-color: black;
-}
-
-.custom-toggler .navbar-toggler-icon {
-    background-color: black;
-}
-
 :root {
     --bg-color: #ffffff;
     --text-color: #000000;
     --card-bg-color: #f8f9fa;
     --btn-bg-color: #007bff;
     --btn-text-color: #ffffff;
+    --navbar-bg-color: #e0e0e0;
 }
 
 .dark-theme {
@@ -120,6 +113,7 @@ body {
     --card-bg-color: #1e1e1e;
     --btn-bg-color: #007bff;
     --btn-text-color: #ffffff;
+    --navbar-bg-color: #333333;
 }
 
 body {
@@ -130,4 +124,13 @@ body {
 .card {
     background-color: var(--card-bg-color);
     color: var(--text-color);
+}
+
+.toggler-icon {
+    background-image: url('/images/icons/free-icon-list-8173287.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 24px;
+    height: 24px;
 }

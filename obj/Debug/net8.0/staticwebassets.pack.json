@@ -25,12 +25,12 @@
       "PackagePath": "staticwebassets\\images\\banners\\constructionImg.png"
     },
     {
-      "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\images\\logos\\logo.png",
-      "PackagePath": "staticwebassets\\images\\logos\\logo.png"
+      "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\images\\icons\\free-icon-list-8173287.png",
+      "PackagePath": "staticwebassets\\images\\icons\\free-icon-list-8173287.png"
     },
     {
-      "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\ThemeToggle.js",
-      "PackagePath": "staticwebassets\\js\\ThemeToggle.js"
+      "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\images\\logos\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logos\\logo.png"
     },
     {
       "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\createReport.js",
@@ -39,6 +39,10 @@
     {
       "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\js\\themeToggle.js",
+      "PackagePath": "staticwebassets\\js\\themeToggle.js"
     },
     {
       "Id": "D:\\Coding\\C#\\KASPDispetcher\\wwwroot\\lib\\bootstrap\\LICENSE",
