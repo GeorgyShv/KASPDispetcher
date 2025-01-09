@@ -1,8 +1,16 @@
 ﻿@page
+@using KASPDispetcher.Models
 @model KASPDispetcher.Pages.ManageUsersModel
 @{
     ViewData["Title"] = "Управление пользователями";
+    var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Главная", Url = "/" },
+        new BreadcrumbItem { Title = "Управление пользователями", Url = "/ManageUsers", IsActive = true }
+    };
 }
+
+<partial name="_Breadcrumbs" model="breadcrumbs" />
 
 <div class="container mt-5">
     <h1>Управление пользователями</h1>

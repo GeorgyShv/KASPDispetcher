@@ -1,7 +1,15 @@
 ﻿@page
+@using KASPDispetcher.Models
 @model ReportsModel
 @{
+    var breadcrumbs = new List<BreadcrumbItem>
+    {
+        new BreadcrumbItem { Title = "Главная", Url = "/" },
+        new BreadcrumbItem { Title = "Отчеты", Url = "/Reports", IsActive = true }
+    };
 }
+
+<partial name="_Breadcrumbs" model="breadcrumbs" />
 
 <style>
     .bg-success {
@@ -17,83 +25,86 @@
     }
 </style>
 
-<form method="get" class="mb-3 mt-4">
-    <div class="row g-3">
-        <div class="col-12 col-md-6 col-lg-3">
-            <label for="SearchQuery" class="form-label">Поиск</label>
-            <input type="text"
-                   asp-for="SearchQuery"
-                   name="SearchQuery"
-                   id="SearchQuery"
-                   class="form-control"
-                   value="@Model.SearchQuery"
-                   placeholder="Введите текст">
-        </div>
+<div class="container mt-2">
+    <form method="get" class="mb-3">
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="SearchQuery" class="form-label">Поиск</label>
+                <input type="text"
+                       asp-for="SearchQuery"
+                       name="SearchQuery"
+                       id="SearchQuery"
+                       class="form-control"
+                       value="@Model.SearchQuery"
+                       placeholder="Введите текст">
+            </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <label for="SelectedObjectId" class="form-label">Объект</label>
-            <select id="ObjectId"
-                    asp-for="SelectedObjectId"
-                    name="ObjectId"
-                    class="form-select">
-                <option value="">Все объекты</option>
-                @foreach (var site in Model.ConstructionSites)
-                {
-                    <option value="@site.ObjectId" selected="@(Model.SelectedObjectId == site.ObjectId ? "selected" : null)">
-                        @site.ObjectName
-                    </option>
-                }
-            </select>
-        </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="SelectedObjectId" class="form-label">Объект</label>
+                <select id="ObjectId"
+                        asp-for="SelectedObjectId"
+                        name="ObjectId"
+                        class="form-select">
+                    <option value="">Все объекты</option>
+                    @foreach (var site in Model.ConstructionSites)
+                    {
+                        <option value="@site.ObjectId" selected="@(Model.SelectedObjectId == site.ObjectId ? "selected" : null)">
+                            @site.ObjectName
+                        </option>
+                    }
+                </select>
+            </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <label for="DateFrom" class="form-label">Дата от</label>
-            <input type="date"
-                   asp-for="DateFrom"
-                   name="DateFrom"
-                   id="DateFrom"
-                   class="form-control"
-                   value="@Model.DateFrom">
-        </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="DateFrom" class="form-label">Дата от</label>
+                <input type="date"
+                       asp-for="DateFrom"
+                       name="DateFrom"
+                       id="DateFrom"
+                       class="form-control"
+                       value="@Model.DateFrom">
+            </div>
 
-        <div class="col-12 col-md-6 col-lg-3">
-            <label for="DateTo" class="form-label">Дата до</label>
-            <input type="date"
-                   asp-for="DateTo"
-                   name="DateTo"
-                   id="DateTo"
-                   class="form-control"
-                   value="@Model.DateTo">
-        </div>
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-12">
-            <label class="form-label d-block">Статусы</label>
-            <div class="row">
-                @foreach (var status in Model.StatusOptions)
-                {
-                    <div class="col-6 col-sm-4 col-md-3 mb-2">
-                        <label class="form-check-label">
-                            <input type="checkbox"
-                                   name="Statuses"
-                                   value="@status"
-                                   class="form-check-input"
-                            @(Model.Statuses?.Contains(status) == true ? "checked" : "")>
-                            @status
-                        </label>
-                    </div>
-                }
+            <div class="col-12 col-md-6 col-lg-3">
+                <label for="DateTo" class="form-label">Дата до</label>
+                <input type="date"
+                       asp-for="DateTo"
+                       name="DateTo"
+                       id="DateTo"
+                       class="form-control"
+                       value="@Model.DateTo">
             </div>
         </div>
-    </div>
 
-    <div class="row mt-4">
-        <div class="col-12 col-md-3 col-lg-2">
-            <button type="submit" class="btn btn-primary w-100">Найти</button>
+        <div class="container my-3">
+            <div class="row">
+                <div class="col d-flex align-items-center">
+                    <div class="me-auto d-flex flex-wrap gap-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="statusApproved" name="Statuses" value="Утвержден">
+                            <label class="form-check-label" for="statusApproved">Утвержден</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="statusUnderReview" name="Statuses" value="Проверка">
+                            <label class="form-check-label" for="statusUnderReview">Проверка</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="statusToRefine" name="Statuses" value="Доработать">
+                            <label class="form-check-label" for="statusToRefine">Доработать</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary ms-3">Найти</button>
+                </div>
+            </div>
         </div>
+    </form>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReportModal">
+            Создать новый отчет
+        </button>
     </div>
-</form>
+</div>
 
 <div class="container mt-4">
     @if (Model.Reports == null || !Model.Reports.Any())

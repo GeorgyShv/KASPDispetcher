@@ -6,21 +6,21 @@
 
 @if (User.Identity != null && User.Identity.IsAuthenticated)
 {
-    <div class="header-buttons">
-        <a class="btn text-black" href="/Reports">Отчеты</a>
+    <div class="header-buttons d-flex justify-content-center align-items-center my-3">
+        <a class="btn text-black mx-2" href="/Reports">Отчеты</a>
         @if (User.IsInRole("Admin"))
         {
-            <a href="/ManageUsers" class="btn text-black">Администраторская панель</a>
+            <a href="/ManageUsers" class="btn text-black mx-2">Администраторская панель</a>
         }
-        else {
-            <button class="btn btn-notifications">
+        else
+        {
+            <button class="btn btn-notifications mx-2">
                 Уведомления
-                <span class="badge">
-                    +23
-                </span>
+                <span class="badge">+23</span>
             </button>
         }
     </div>
+
 }
 
 @if (User.IsInRole("Admin"))

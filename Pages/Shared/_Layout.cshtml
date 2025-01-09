@@ -46,6 +46,13 @@
         </nav>
     </header>
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                @RenderBody() <!-- Хлебные крошки будут выводиться на каждой странице -->
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

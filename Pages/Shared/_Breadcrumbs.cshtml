@@ -1,0 +1,18 @@
+﻿@using KASPDispetcher.Models
+@model List<BreadcrumbItem>
+
+<ol class="breadcrumb">
+    @foreach (var item in Model)
+    {
+        if (item.IsActive)
+        {
+            <li class="breadcrumb-item active" aria-current="page">@item.Title</li>
+        }
+        else
+        {
+            <li class="breadcrumb-item">
+                <a href="@item.Url">@item.Title</a>
+            </li>
+        }
+    }
+</ol>
