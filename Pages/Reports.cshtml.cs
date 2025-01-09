@@ -45,9 +45,15 @@ public class ReportsModel : PageModel
     [BindProperty(SupportsGet = true)]
     public string[]? Statuses { get; set; }
 
+    public List<string> StatusOptions { get; set; } = new();
+
     public async Task OnGetAsync()
     {
         ConstructionSites = await _context.СonstructionSites.ToListAsync();
+
+        StatusOptions = await _context.ReportStates
+            .Select(s => s.StateName)
+            .ToListAsync();
 
         var query = _context.Reports
             .Include(r => r.ReportStateJournals)
@@ -55,14 +61,52 @@ public class ReportsModel : PageModel
             .Include(r => r.Object)
             .AsQueryable();
 
-        var reports = await query
-            .Include(r => r.ReportStateJournals)
-            .ThenInclude(j => j.State)
-            .Include(r => r.Object)
-            .ToListAsync();
+        // Применяем фильтрацию
+        if (!string.IsNullOrWhiteSpace(SearchQuery))
+        {
+            query = query.Where(r =>
+                r.НомерДокумента.ToString().Contains(SearchQuery) ||
+                (r.Note != null && r.Note.Contains(SearchQuery)));
+        }
 
+        if (SelectedObjectId.HasValue)
+        {
+            query = query.Where(r => r.ObjectId == SelectedObjectId.Value);
+        }
+
+        if (!string.IsNullOrEmpty(DateFrom) && DateTime.TryParse(DateFrom, out var dateFrom))
+        {
+            query = query.Where(r => r.Data >= dateFrom);
+        }
+
+        if (!string.IsNullOrEmpty(DateTo) && DateTime.TryParse(DateTo, out var dateTo))
+        {
+            query = query.Where(r => r.Data <= dateTo);
+        }
+
+        if (Statuses != null && Statuses.Any())
+        {
+            query = query.Where(r => r.ReportStateJournals.Any(j =>
+                j.State != null && Statuses.Contains(j.State.StateName)));
+        }
+
+        // Применяем сортировку
+        query = SortColumn switch
+        {
+            "НомерДокумента" => SortDescending
+                ? query.OrderByDescending(r => r.НомерДокумента)
+                : query.OrderBy(r => r.НомерДокумента),
+            "Дата" => SortDescending
+                ? query.OrderByDescending(r => r.Data)
+                : query.OrderBy(r => r.Data),
+            _ => query
+        };
+
+        // Выполняем запрос к базе
+        var reports = await query.ToListAsync();
+
+        // Преобразуем данные для отображения
         var users = await _context.Users.ToDictionaryAsync(u => u.Id, u => u.LastName);
-
         Reports = reports.Select(r => new ReportViewModel
         {
             ReportId = r.ReportId,
@@ -72,72 +116,12 @@ public class ReportsModel : PageModel
             ObjectName = r.Object?.ObjectName ?? "Нет данных",
             UserName = users.ContainsKey(r.UserId) ? users[r.UserId] : "Нет данных",
             Status = r.ReportStateJournals
-            .OrderByDescending(j => j.StateDate)
-            .FirstOrDefault()?.State?.StateName ?? "Нет данных",
+                .OrderByDescending(j => j.StateDate)
+                .FirstOrDefault()?.State?.StateName ?? "Нет данных",
             DepartmentId = r.DepartmentId
         }).ToList();
-
-        // Поиск по номеру документа, пользователю и заметке
-        if (!string.IsNullOrWhiteSpace(SearchQuery))
-        {
-            query = query.Where(r =>
-                r.НомерДокумента.ToString().Contains(SearchQuery) ||
-                (users.ContainsKey(r.UserId) && users[r.UserId].Contains(SearchQuery)) ||
-                (r.Note != null && r.Note.Contains(SearchQuery)));
-        }
-
-        // Фильтр по выбранному объекту
-        if (SelectedObjectId.HasValue)
-        {
-            query = query.Where(r => r.ObjectId == SelectedObjectId.Value);
-        }
-
-        // Фильтр по дате
-        if (!string.IsNullOrEmpty(DateFrom) && DateTime.TryParse(DateFrom, out var dateFrom))
-        {
-            query = query.Where(r => r.Data >= dateFrom);
-        }
-
-        if (SelectedObjectId.HasValue)
-        {
-            query = query.Where(r => r.ObjectId == SelectedObjectId.Value);
-        }
-
-        if (!string.IsNullOrEmpty(SelectedUserId))
-        {
-            query = query.Where(r => r.UserId.Contains(SelectedUserId));
-        }
-
-        if (!string.IsNullOrEmpty(DateTo) && DateTime.TryParse(DateTo, out var dateTo))
-        {
-            query = query.Where(r => r.Data <= dateTo);
-        }
-
-        // Фильтрация по статусам
-        if (Statuses != null && Statuses.Any())
-        {
-            query = query.Where(r => r.ReportStateJournals.Any(j =>
-                j.State != null && Statuses.Contains(j.State.StateName)));
-        }
-
-        // Сортировка
-        query = SortColumn switch
-        {
-            "НомерДокумента" => SortDescending
-                ? query.OrderByDescending(r => r.НомерДокумента)
-                : query.OrderBy(r => r.НомерДокумента),
-            "Дата" => SortDescending
-                ? query.OrderByDescending(r => r.Data)
-                : query.OrderBy(r => r.Data),
-            "Исполнитель" => SortDescending
-                ? query.OrderByDescending(r => users.ContainsKey(r.UserId) ? users[r.UserId] : "")
-                : query.OrderBy(r => users.ContainsKey(r.UserId) ? users[r.UserId] : ""),
-            "Объект" => SortDescending
-                ? query.OrderByDescending(r => r.Object.ObjectName)
-                : query.OrderBy(r => r.Object.ObjectName),
-            _ => query
-        };
     }
+
     public async Task<IActionResult> OnPostAsync(DateTime Date, string DocumentNumber, string? Notes)
     {
         return Page();

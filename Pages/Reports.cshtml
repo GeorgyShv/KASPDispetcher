@@ -17,16 +17,15 @@
     }
 </style>
 
-<!-- Фильтры -->
 <form method="get" class="mb-3">
     <div class="row">
         <div class="col-md-3">
             <label for="SearchQuery" class="form-label">Поиск</label>
-            <input type="text" name="SearchQuery" id="SearchQuery" class="form-control" value="@Model.SearchQuery" placeholder="Введите текст">
+            <input type="text" asp-for="SearchQuery" name="SearchQuery" id="SearchQuery" class="form-control" value="@Model.SearchQuery" placeholder="Введите текст">
         </div>
         <div class="col-md-3">
             <label for="SelectedObjectId" class="form-label">Объект</label>
-            <select id="ObjectId" name="ObjectId" class="form-select">
+            <select id="ObjectId" asp-for="SelectedObjectId" name="ObjectId" class="form-select">
                 <option value="">Все объекты</option>
                 @foreach (var site in Model.ConstructionSites)
                 {
@@ -38,44 +37,28 @@
         </div>
         <div class="col-md-3">
             <label for="DateFrom" class="form-label">Дата от</label>
-            <input type="date" name="DateFrom" id="DateFrom" class="form-control" value="@Model.DateFrom">
+            <input type="date" asp-for="DateFrom" name="DateFrom" id="DateFrom" class="form-control" value="@Model.DateFrom">
         </div>
         <div class="col-md-3">
             <label for="DateTo" class="form-label">Дата до</label>
-            <input type="date" name="DateTo" id="DateTo" class="form-control" value="@Model.DateTo">
+            <input type="date" asp-for="DateTo" name="DateTo" id="DateTo" class="form-control" value="@Model.DateTo">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-12">
-            <label class="form-label">Статусы</label><br />
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="Approved" name="Statuses" value="Approved" />
-                <label class="form-check-label" for="Approved">Утвержден</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="InCheck" name="Statuses" value="InCheck" />
-                <label class="form-check-label" for="InCheck">Проверка</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="ToCorrect" name="Statuses" value="ToCorrect" />
-                <label class="form-check-label" for="InCheck">Доработать</label>
-            </div>
+            @foreach (var status in Model.StatusOptions)
+            {
+                <label>
+                    <input type="checkbox" name="Statuses" value="@status" @(Model.Statuses?.Contains(status) == true ? "checked" : "") />
+                    @status
+                </label>
+            }
         </div>
     </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Найти</button>
+    </div>
 </form>
-
-<div class="mb-3">
-    <form method="get">
-        <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control" name="SearchQuery" value="@Model.SearchQuery" placeholder="Поиск...">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Найти</button>
-            </div>
-        </div>
-    </form>
-</div>
 
 <div class="container mt-4">
     @if (Model.Reports == null || !Model.Reports.Any())
