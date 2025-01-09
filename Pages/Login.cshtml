@@ -4,30 +4,34 @@
     ViewData["Title"] = "Авторизация";
 }
 
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow-lg p-4" style="width: 24rem;">
-        <div class="card-body">
-            <h5 class="card-title text-center">Войти</h5>
-            <form method="post">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" class="form-control" asp-for="Email" required />
-                </div>
-                <div class="form-group">
-                    <label for="password">Пароль</label>
-                    <input type="password" id="password" class="form-control" asp-for="Password" required />
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="rememberMe" class="form-check-input" asp-for="RememberMe" />
-                    <label class="form-check-label" for="rememberMe">Запомнить меня</label>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Войти</button>
-                </div>
-                <div class="text-danger">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+        <h2 class="text-center mb-4">Вход</h2>
+        <form method="post">
+            <div class="mb-3">
+                <label for="Input_Email" class="form-label">Электронная почта</label>
+                <input type="email" id="email" class="form-control" asp-for="Email" required />
+            </div>
+            <div class="mb-3">
+                <label for="Input_Password" class="form-label">Пароль</label>
+                <input type="password" id="password" class="form-control" asp-for="Password" required />
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" id="rememberMe" class="form-check-input" asp-for="RememberMe" />
+                <label class="form-check-label" for="RememberMe">Запомнить меня</label>
+            </div>
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger text-center">
                     @Model.ErrorMessage
                 </div>
-            </form>
+            }
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Войти</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/Account/Register" class="text-decoration-none">Зарегистрироваться</a>
         </div>
     </div>
 </div>
